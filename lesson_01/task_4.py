@@ -27,3 +27,59 @@ deposit(10000, 24)
 deposit(10000, 24)
 к концу срока: 11384.29
 """
+MINIMAL_DEPOSIT = 'minimal_deposit'
+MIDDLE_DEPOSIT = 'middle_deposit'
+MAXIMUM_DEPOSIT = 'maximum_deposit'
+
+DEPOSIT_PERCENTS = {
+    'minimal_deposit': {
+        6: 5,
+        12: 6,
+        24: 5,
+    },
+    'middle_deposit': {
+        6: 6,
+        12: 7,
+        24: 6.5,
+    },
+    'maximum_deposit': {
+        6: 7,
+        12: 8,
+        24: 7.5,
+    },
+}
+
+
+def get_deposit_range(begin_sum):
+    if 1000 < begin_sum < 10000:
+        return MINIMAL_DEPOSIT
+    elif 10000 <= begin_sum < 100000:
+        return MIDDLE_DEPOSIT
+    elif 100000 <= begin_sum < 1000000:
+        return MAXIMUM_DEPOSIT
+
+
+def get_deposit_persent(deposit_range, deposit_time):
+    return DEPOSIT_PERCENTS[deposit_range][deposit_time]
+
+
+def deposit(begin_sum, deposit_time, capitalize=False):
+    deposit_range = get_deposit_range(begin_sum)
+    deposit_persent = get_deposit_persent(deposit_range, deposit_time)
+    if capitalize:
+        end_sum = begin_sum * ((1 + (deposit_persent * 30) /
+                               (100 * 365)) ** deposit_time)
+    else:
+        end_sum = begin_sum + \
+                  ((begin_sum * deposit_persent * (deposit_time * 30) /
+                    (365 * 100)))
+    end_sum = round(end_sum, 2)
+
+    return {'begin_sum': begin_sum,
+            'end_sum': end_sum,
+            deposit_time: deposit_persent}
+
+
+if __name__ == '__main__':
+    print(deposit(10000, 24))
+    print(deposit(10000, 24, capitalize=True))

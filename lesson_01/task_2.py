@@ -30,7 +30,7 @@ def print_directory_contents(sPath):
 
 
 if __name__ == '__main__':
-    current_path = '/home/anton/projects/untitled/'
+    current_path = '/home/'
     directory_list = print_directory_contents(current_path)
     for i in directory_list:
         print(i)
