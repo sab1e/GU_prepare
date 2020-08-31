@@ -1,0 +1,15 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-sm">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ create_form.as_p }}
+    <input class="btn btn-light" type="submit" value="сохранить">
+  </form>
+    <a href="{% url 'mainapp:products' %}" class="btn btn-light" role="button" aria-pressed="true">
+      К списку продуктов
+    </a>
+</div>
+{% endblock %}
