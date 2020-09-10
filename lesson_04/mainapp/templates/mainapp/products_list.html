@@ -1,34 +1,20 @@
-{% extends 'mainapp/base.html' %}
-{% load static %}
-
-{% block content %}
-    <div class="container-sm">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Название</th>
-                    <th scope="col">Цена</th>
-                    <th scope="col">Единица измерения</th>
-                    <th scope="col">Дата поступления</th>
-                    <th scope="col">Поставщик</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for object in products %}
-                    <tr>
-                        <td>{{ object.name }}</td>
-                        <td>{{ object.price }}</td>
-                        <td>{{ object.measure_unit }}</td>
-                        <td>{{ object.reciept_date }}</td>
-                        <td>{{ object.vendor }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
-            <a href="{% url 'mainapp:product_create'%}" class="btn btn-light" role="button" aria-pressed="true">
-            Создать
-            </a>
-
-    </div>
-{% endblock %}
+<thead>
+    <tr>
+        <th scope="col">Название</th>
+        <th scope="col">Цена</th>
+        <th scope="col">Единица измерения</th>
+        <th scope="col">Дата поступления</th>
+        <th scope="col">Поставщик</th>
+    </tr>
+</thead>
+<tbody>
+    {% for object in products %}
+        <tr>
+            <td>{{ object.name }}</td>
+            <td>{{ object.price }}</td>
+            <td>{{ object.measure_unit }}</td>
+            <td>{{ object.reciept_date }}</td>
+            <td>{{ object.vendor }}</td>
+        </tr>
+    {% endfor %}
+</tbody>
